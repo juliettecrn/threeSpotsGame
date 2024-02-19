@@ -1,16 +1,25 @@
 package fr.tsg.object;
 
 public class Cell {
-	int x;
-	int y;
-	Position position = new Position(x, y);
+	
+	Position position;
 	int point;
 	
 	public Cell(int x, int y, int point) {
+		this.position =  new Position(x, y);
 		this.point = point;
-		this.x =   x;
-		this.y = y;
 	}
+	
+	public void functionTruc() {
+		this.point = 0;
+		int point = 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Cell [position=" + position + ", point=" + point + "]";
+	}
+	
 	
 
 }
