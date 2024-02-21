@@ -50,14 +50,12 @@ public class Game {
 		 * c'est celui ci qui gagne, s'il a plus, c'est le joueur a 12 points qui gagne
 		 */
 		boolean victory = false;
-		if (playerR.points >= 12) {
-			if (playerB.points >6) {
+		if (playerR.points >= 12 
+				&& playerB.points >6) {
 				victory = true;
-			}
-		}else if (playerB.points >= 12) {
-			if (playerR.points > 6) {
+		}else if (playerB.points >= 12 
+				&& playerR.points > 6) {
 				victory = true;
-			}
 		}
 		if (victory == true) {
 			stopGame();
@@ -72,8 +70,8 @@ public class Game {
 
 	public void initAllPions() {
 		Token pionRouge = new Token("Rouge");
-		Cell cellRouge1 = this.plateau.getCellAtCoordinates(0, 1);
-		Cell cellRouge2 = this.plateau.getCellAtCoordinates(0, 2);
+		Cell cellRouge1 = this.plateau.getCellAtCoordinates(1, 0);
+		Cell cellRouge2 = this.plateau.getCellAtCoordinates(2, 0);
 		pionRouge.cell1 = cellRouge1;
 		pionRouge.cell2 = cellRouge2;
 		playerR.pion = pionRouge;
@@ -82,7 +80,7 @@ public class Game {
 		
 		Token pionBleu = new Token("Bleu");
 		Cell cellBleu1 = this.plateau.getCellAtCoordinates(1, 1);
-		Cell cellBleu2 = this.plateau.getCellAtCoordinates(1, 2);
+		Cell cellBleu2 = this.plateau.getCellAtCoordinates(2, 1);
 		pionBleu.cell1 = cellBleu1;
 		pionBleu.cell2 = cellBleu2;
 		playerB.pion = pionBleu;
@@ -91,7 +89,7 @@ public class Game {
 
 		
 		this.pionBlanc = new Token("Blanc");
-		Cell cellBlanc1 = this.plateau.getCellAtCoordinates(2, 1);
+		Cell cellBlanc1 = this.plateau.getCellAtCoordinates(1, 2);
 		Cell cellBlanc2 = this.plateau.getCellAtCoordinates(2, 2);
 		this.pionBlanc.cell1 = cellBlanc1;
 		this.pionBlanc.cell2 = cellBlanc2;

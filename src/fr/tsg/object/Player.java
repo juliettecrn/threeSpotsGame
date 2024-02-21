@@ -29,6 +29,8 @@ public class Player {
 		Position position = null;
 		do {
 			position = getRandomDestination();
+			String direction = this.pion.vertical ? "vertical": "horizontal";
+//			System.out.println(position.x + "," + position.y + " " + direction );
 		} while (!checkIfMoveIsValid(position,plateau));
 
 		return position;
@@ -56,7 +58,7 @@ public class Player {
 		if (valid) {
 			
 			if (pion.vertical) {
-				position2.y = position.y + 1;
+				position2.y = position.y - 1;
 				position2.x = position.x;
 			} else {
 				position2.x = position.x + 1;
@@ -73,9 +75,9 @@ public class Player {
 		if (valid) {
 			Cell cell1 = plateau.getCellAtCoordinates(position);
 			Cell cell2 = plateau.getCellAtCoordinates(position2);
-			if(cell1.pion != null || cell1.pion != this.pion) {
+			if(cell1.pion != null && cell1.pion != this.pion) {
 				valid = false;
-			}else if (cell2.pion != null || cell2.pion != this.pion){
+			}else if (cell2.pion != null && cell2.pion != this.pion){
 				valid = false;
 			}
 			
