@@ -4,11 +4,12 @@ public class Cell {
 
 	Position position;
 	int point;
-	Pions pion;
+	Token pion;
 
 	public Cell(int x, int y, int point) {
 		this.position =  new Position(x, y);
 		this.point = point;
+		this.pion = null;
 	}
 
 	public boolean isAvailable(){
@@ -26,6 +27,7 @@ public class Cell {
 		/* est necessaire a chaque fois q'un pion est deplacé, apères avoir été supprimé, il doit être positionné a un 
 		 * endroit différent du précédent, tout en ne chevauchant pas un autre pion.	
 		 */
+		
 	}
 
 	@Override

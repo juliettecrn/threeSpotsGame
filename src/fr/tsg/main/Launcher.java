@@ -17,6 +17,8 @@ public class Launcher {
 			Cell cell = cells.get(i);
 			System.out.println(cell);
 		}
+		gameInstance.startGame();
+		
 		//Player p = new Player(0, null);
 
 		//p.x = 1;
