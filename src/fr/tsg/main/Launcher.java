@@ -12,6 +12,7 @@ public class Launcher {
 		Game gameInstance = new Game();
 		Plateau plateau = gameInstance.plateau;
 		List<Cell> cells = plateau.cellList;
+		System.out.println("Hello World");
 		System.out.println(plateau);
 		for(int i=0; i<cells.size(); i++) {
 			Cell cell = cells.get(i);
