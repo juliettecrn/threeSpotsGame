@@ -48,7 +48,7 @@ public class Game {
 	}
 
 	private void doPlayerTurn(Player player) {
-		
+
 		if(!checkVictoryConditions()) {
 			Map<Integer, String> oldMap = plateau.afficherPlateau(true);
 			player.play(pionBlanc, this.plateau);
@@ -98,7 +98,7 @@ public class Game {
 		 * Afficher le gagnant, et que la partie est fini, tout en ne laissant pas la
 		 * possibilité de jouer un tour de plus
 		 */
-
+		System.out.println("Winner is player " + this.winner.pion.couleur);
 
 	}
 
@@ -137,7 +137,7 @@ public class Game {
 		this.plateau = new Plateau();
 		this.winner= null;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Game [winner=" + winner + "]";
