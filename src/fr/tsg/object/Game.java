@@ -50,7 +50,7 @@ public class Game {
 	private void doPlayerTurn(Player player) {
 		
 		if(!checkVictoryConditions()) {
-			Map<Integer, String> oldMap = plateau.afficherPlateau();
+			Map<Integer, String> oldMap = plateau.afficherPlateau(true);
 			player.play(pionBlanc, this.plateau);
 			Map<Integer, String> newMap = plateau.mergeOldMap(oldMap);
 			printScreen(newMap);

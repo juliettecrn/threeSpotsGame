@@ -28,13 +28,13 @@ public class Plateau {
 		}
 	}
 
-	public Map<Integer, String> afficherPlateau() {
+	public Map<Integer, String> afficherPlateau(boolean choices) {
 		//		for(int i=0; i<cellList.size(); i++){
 		//			Cell cell = cellList.get(i);
 		//		}
 		Map<Integer, String> finalDraw = new HashMap<Integer, String>();
 		for(Cell cell : cellList) {
-			Map<Integer, String> cellDrawing = cell.afficherCell();
+			Map<Integer, String> cellDrawing = cell.afficherCell(choices);
 			int start = 4 * cell.position.y;
 			Set<Integer> keys = cellDrawing.keySet();
 			for(Integer lineNumber : keys) {
@@ -49,7 +49,7 @@ public class Plateau {
 	}
 	
 	public Map<Integer, String> mergeOldMap(Map<Integer,String> oldMap) {
-		Map<Integer, String> newMap = afficherPlateau();
+		Map<Integer, String> newMap = afficherPlateau(false);
 		String separator = "                      ";
 			Set<Integer> keys = newMap.keySet();
 			for(Integer lineNumber : keys) {
