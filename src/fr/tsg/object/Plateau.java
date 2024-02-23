@@ -96,27 +96,12 @@ public class Plateau {
 	}
 	public void initOneCell(int x, int y) {
 		int point = 0;
-<<<<<<< Updated upstream
 		if (x == 2) {
 			point += 1;
 		}
 		Cell cell = new Cell(x, y, point);
 		cellList.add(cell);   	
-=======
-		if (x == 2) {
-			point += 1;
-		}
-		Cell cell = new Cell(x, y, point);
-		cellList.add(cell);   	
-	}
 
-	public int point(int x, int y) {
-		int point = 0;
-		if (x == 2) {
-			point += 1;
-		}
-		return point;
->>>>>>> Stashed changes
 	}
 
 

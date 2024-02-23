@@ -37,16 +37,10 @@ public class Player {
 		Position position = null;
 		do {
 			position = getRandomDestination();
-<<<<<<< Updated upstream
-			String direction = this.pion.vertical ? "vertical": "horizontal";
-//			System.out.println(position.x + "," + position.y + " " + direction );
-		} while (!checkIfMoveIsValid(position,plateau));
-=======
 			// String direction = this.pion.vertical ? "vertical": "horizontal";// ca j'ai
 			// pas compris
 			// System.out.println(position.x + "," + position.y + " " + direction );
 		} while (!checkIfMoveIsValid(pion, position, plateau));
->>>>>>> Stashed changes
 
 		return position;
 	}

@@ -13,12 +13,8 @@ public class Game {
 	public Player playerR;
 	public Player playerB;
 	public Plateau plateau;
-<<<<<<< Updated upstream
-	Token pionBlanc;
-=======
 	public Token pionBlanc;
 	public Player winner;
->>>>>>> Stashed changes
 
 	// Constructor
 	public Game() {
