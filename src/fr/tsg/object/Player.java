@@ -4,47 +4,66 @@ import java.util.Random;
 
 public class Player {
 	public Token pion;
-	int points;
+	int score;
 
 	// constructor
 	public Player(int points) {
-		this.points = points;
+		this.score = points;
+
 	}
 
-	public void play(Plateau plateau) {
-		// choisi ta destination, bouge pion, recupère poins,
-		chooseDestination(plateau);
-		movePion(pion);
+	public void play(Token pionBlanc, Plateau plateau) {
+		playPion(this.pion, plateau, true);
+		playPion(pionBlanc, plateau, false);
 	}
+	public void playPion(Token pion, Plateau plateau, boolean scoring) {
+		Position destination = chooseDestination(pion, plateau);
+		movePion(pion, destination, plateau, scoring);
+	}
+	public void movePion(Token pion, Position destination, Plateau plateau, boolean scoring) {
 
-	public void movePion(Token pion) {
-
+		pion.reset();
+		pion.moveTo(destination, plateau);
+		if (scoring) {
+			compterPoints();
+		}
 	}
 
 	// une fonction privé (private) est une fonction qui a une portée limitée à la
 	// classe.
 	// cela veut dire que tu ne pourras appeler cette fonction que depuis cette
 	// classe, il faut trouvver où ;)
-	private Position chooseDestination(Plateau plateau) {
+	private Position chooseDestination(Token pion, Plateau plateau) {
 		Position position = null;
 		do {
 			position = getRandomDestination();
+<<<<<<< Updated upstream
 			String direction = this.pion.vertical ? "vertical": "horizontal";
 //			System.out.println(position.x + "," + position.y + " " + direction );
 		} while (!checkIfMoveIsValid(position,plateau));
+=======
+			// String direction = this.pion.vertical ? "vertical": "horizontal";// ca j'ai
+			// pas compris
+			// System.out.println(position.x + "," + position.y + " " + direction );
+		} while (!checkIfMoveIsValid(pion, position, plateau));
+>>>>>>> Stashed changes
 
 		return position;
 	}
 
-	private boolean checkIfMoveIsValid(Position position,Plateau plateau) {
+	public void compterPoints() {
+		this.score += pion.compterPoint();
+	}
+
+	private boolean checkIfMoveIsValid(Token pion, Position position, Plateau plateau) {
 		/*
 		 * Il y a deux conditions, il faut verifier si le pion a réellement une position
 		 * différente, ainsi que le fait qu'il n'y ai pas d'autres pièces a l'endroit où
 		 * nous voulons la decaller
 		 */
-		Position position2 = new Position();
+		Position position2 = null;
 		boolean valid = true;
-		//verifie que le pion est sur le plateau
+		// verifie que le pion est sur le plateau
 		if (pion.vertical) {
 			if (position.y == 0) {
 				valid = false;
@@ -54,16 +73,9 @@ public class Player {
 				valid = false;
 			}
 		}
-		//on verifie que le pion a bougé (occupe des positions/cell différentes)
+		// on verifie que le pion a bougé (occupe des positions/cell différentes)
 		if (valid) {
-			
-			if (pion.vertical) {
-				position2.y = position.y - 1;
-				position2.x = position.x;
-			} else {
-				position2.x = position.x + 1;
-				position2.y = position.y;
-			}
+			position2 = pion.getSecondPosition(position);
 			if (pion.cell1.position.x == position.x && pion.cell1.position.y == position.y) {
 				if (pion.cell2.position.x == position2.x && pion.cell2.position.y == position.y) {
 					valid = false;
@@ -71,19 +83,24 @@ public class Player {
 			}
 
 		}
-		//verifier que la cellule n'est pas occupé
+		// verifier que la cellule n'est pas occupé
 		if (valid) {
 			Cell cell1 = plateau.getCellAtCoordinates(position);
 			Cell cell2 = plateau.getCellAtCoordinates(position2);
-			if(cell1.pion != null && cell1.pion != this.pion) {
+			if (cell1.pion != null && cell1.pion != this.pion) {
 				valid = false;
-			}else if (cell2.pion != null && cell2.pion != this.pion){
+			} else if (cell2.pion != null && cell2.pion != this.pion) {
 				valid = false;
 			}
-			
+
 		}
 		return valid;
+
 	}
+
+
+
+
 
 	private Position getRandomDestination() {
 
@@ -106,16 +123,20 @@ public class Player {
 		return pion;
 	}
 
+	public String toString() {
+		return pion.couleur ;
+	}
+
 	public void setPion(Token pion) {
 		this.pion = pion;
 	}
 
 	public int getPoints() {
-		return points;
+		return score;
 	}
 
 	public void setPoints(int points) {
-		this.points = points;
+		this.score = points;
 	}
 
 }

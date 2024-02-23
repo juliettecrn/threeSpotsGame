@@ -1,12 +1,16 @@
 package fr.tsg.object;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Plateau {
 	public List<Cell> cellList;
 	static int NB_COL = 3;
 	static int NB_ROW = 3;
+
 
 	//constructor
 	public Plateau() {
@@ -24,16 +28,39 @@ public class Plateau {
 		}
 	}
 
-	public void initialisationAllPions() {
-		/*Les pions rouge et bleu sont pas de joueurs definis, au debut du jeu ils n'appartiennent a personne. Cependant
-		 *le pion neutre est différent car il ne peut pas etre le pion d'un joueur
-		 */
+	public Map<Integer, String> afficherPlateau() {
+		//		for(int i=0; i<cellList.size(); i++){
+		//			Cell cell = cellList.get(i);
+		//		}
+		Map<Integer, String> finalDraw = new HashMap<Integer, String>();
+		for(Cell cell : cellList) {
+			Map<Integer, String> cellDrawing = cell.afficherCell();
+			int start = 4 * cell.position.y;
+			Set<Integer> keys = cellDrawing.keySet();
+			for(Integer lineNumber : keys) {
+				String lineDraw = cellDrawing.get(lineNumber);
+				int finalLineNumber = start+lineNumber;
+				String draw = finalDraw.getOrDefault(finalLineNumber, "");
+				draw += lineDraw;
+				finalDraw.put(finalLineNumber, draw);
+			}
+		}
+		return finalDraw;
+	}
+	
+	public Map<Integer, String> mergeOldMap(Map<Integer,String> oldMap) {
+		Map<Integer, String> newMap = afficherPlateau();
+		String separator = "                      ";
+			Set<Integer> keys = newMap.keySet();
+			for(Integer lineNumber : keys) {
+				String newDraw = newMap.getOrDefault(lineNumber, "");
+				String oldDraw = oldMap.getOrDefault(lineNumber, "");
+				newDraw = oldDraw + separator + newDraw;
+				newMap.put(lineNumber, newDraw);
+			}
+		return newMap;
 	}
 
-
-	public void initialisationOnePion() {
-
-	}
 	/**
 	 * retourne la cellule qui à la position searchedX, searchedY
 	 * @param searchedX
@@ -55,7 +82,6 @@ public class Plateau {
 
 
 	public Cell getCellAtCoordinates(Position searchedPosition) {
-		StringBuffer sb = new StringBuffer();
 		return getCellAtCoordinates(searchedPosition.x, searchedPosition.y);
 	}
 
@@ -70,12 +96,41 @@ public class Plateau {
 	}
 	public void initOneCell(int x, int y) {
 		int point = 0;
+<<<<<<< Updated upstream
+		if (x == 2) {
+			point += 1;
+		}
+		Cell cell = new Cell(x, y, point);
+		cellList.add(cell);   	
+=======
 		if (x == 2) {
 			point += 1;
 		}
 		Cell cell = new Cell(x, y, point);
 		cellList.add(cell);   	
 	}
+
+	public int point(int x, int y) {
+		int point = 0;
+		if (x == 2) {
+			point += 1;
+		}
+		return point;
+>>>>>>> Stashed changes
+	}
+
+
+	public List<Cell> cellLibre(List<Cell> cellList, Token pion){
+		List<Cell> deuxiemeList = new ArrayList<Cell>();
+		for (int i = 0; i < cellList.size(); i++) {
+			Cell cell = cellList.get(i);
+			if(cell.pion == null) { 
+				deuxiemeList.add(cell);
+			}
+		}
+		return deuxiemeList;
+	}
+
 
 	public List<Cell> getCellList() {
 		return cellList;
