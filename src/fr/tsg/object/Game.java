@@ -13,7 +13,7 @@ public class Game {
 	public int turn = 0;
 	public Player playerR;
 	public Player playerB;
-	public static Plateau plateau;
+	public Plateau plateau;
 	public Token pionBlanc;
 	public Player winner;
 	public static int lastChoice = 0;// numero du coup
@@ -54,7 +54,7 @@ public class Game {
 	private void doPlayerTurn(Player player) {
 
 		if(!checkVictoryConditions()) {
-			Map<Integer, String> oldMap = plateau.afficherPlateau(true);
+			Map<Integer, String> oldMap = plateau.afficherPlateau(true, player.pion);
 			player.play(pionBlanc, this.plateau);
 			Map<Integer, String> newMap = plateau.mergeOldMap(oldMap);
 			printScreen(newMap);

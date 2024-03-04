@@ -27,14 +27,17 @@ public class Plateau {
 			}
 		}
 	}
-
-	public Map<Integer, String> afficherPlateau(boolean choices) {
-		//		for(int i=0; i<cellList.size(); i++){
-		//			Cell cell = cellList.get(i);
-		//		}
+/**
+ * plateau de base avec les pions actuels, peut afficher les choix si choices == true, affiche les choix
+ * pour le pion passé en paramètre.
+ * @param choices
+ * @param pion
+ * @return
+ */
+	public Map<Integer, String> afficherPlateau(boolean choices, Token pion) {
 		Map<Integer, String> finalDraw = new HashMap<Integer, String>();
-		for(Cell cell : cellList) {
-			Map<Integer, String> cellDrawing = cell.afficherCell(choices);
+		for(Cell cell : this.cellList) {
+			Map<Integer, String> cellDrawing = cell.afficherCell(choices, this, pion);
 			int start = 4 * cell.position.y;
 			Set<Integer> keys = cellDrawing.keySet();
 			for(Integer lineNumber : keys) {
@@ -47,9 +50,11 @@ public class Plateau {
 		}
 		return finalDraw;
 	}
-	
-	public Map<Integer, String> mergeOldMap(Map<Integer,String> oldMap) {
-		Map<Integer, String> newMap = afficherPlateau(false);
+	/**
+	 * se fusionne avec afficherPlateau
+	 */ 
+	public Map<Integer, String> mergeOldMap(Map<Integer,String> oldMap) { 
+		Map<Integer, String> newMap = afficherPlateau(false, null);
 		String separator = "                      ";
 			Set<Integer> keys = newMap.keySet();
 			for(Integer lineNumber : keys) {
