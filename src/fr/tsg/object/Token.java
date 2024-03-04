@@ -30,7 +30,6 @@ public class Token {
 		this.cell2 = null;
 	}
 
-	
 	public void moveTo(Position destination, Plateau plateau) {
 		this.cell1 = plateau.getCellAtCoordinates(destination);
 		Position destination2 = getSecondPosition(destination);
@@ -39,12 +38,13 @@ public class Token {
 		this.cell2.pion = this;
 	}
 
-	public int compterPoint(){
+	public int compterPoint() {
 		int value = 0;
 		value = cell1.point + cell2.point;
 		return value;
-		
+
 	}
+
 	public Position getSecondPosition(Position firstPosition) {
 		Position position2 = new Position();
 		if (this.vertical) {
@@ -55,6 +55,13 @@ public class Token {
 			position2.y = firstPosition.y;
 		}
 		return position2;
+	}
+
+	public void applyChoice(int choice) {
+
+		Token choix = Game.choises.get(choice);
+		this.cell1 = choix.cell1;
+		this.vertical = choix.vertical;
 	}
 
 }

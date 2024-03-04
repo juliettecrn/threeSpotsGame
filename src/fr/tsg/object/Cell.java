@@ -8,6 +8,7 @@ public class Cell {
 	Position position;
 	int point;
 	Token pion;
+	Plateau plateau;
 
 	public Cell(int x, int y, int point) {
 		this.position = new Position(x, y);
@@ -45,7 +46,7 @@ public class Cell {
 
 	public Map<Integer, String> afficherCell(boolean choices) {
 		if(choices) {
-			return afficherWithChoiceCell();
+			return afficherWithChoiceCell(null);
 		}else {
 			return afficherCellWithoutChoice();
 		}
@@ -71,7 +72,7 @@ public class Cell {
 	}
 
 
-	private Map<Integer, String> afficherWithChoiceCell() {
+	private Map<Integer, String> afficherWithChoiceCell(Player player) {
 		Map<Integer, String> toDraw = new HashMap<Integer, String>();
 		if (position.y == 0) {
 			toDraw.put(0, "X X X X X");
@@ -85,10 +86,27 @@ public class Cell {
 		} else {
 			toDraw.put(2, "*       *");
 		}
+		Token newPion = new Token("temp");
+		newPion.vertical = false;
+		newPion.cell1= this;
+		//newPion.cell2= this;// mais la dcp c'est la meme cellule??
+
+		if(player.checkIfMoveIsValid(pion, position, plateau)){// j'ai mis un plateau en static  
+			String choice= String.valueOf(Game.lastChoice);
+			Game.choises.put(Game.lastChoice, newPion);
+			Game.lastChoice++;
+			toDraw.put(3, "*  "+ choice+"   ");
+			Position position2 = pion.getSecondPosition(position);
+			newPion.cell2 = plateau.getCellAtCoordinates(position2);
+
+			
+			
+		}
 		toDraw.put(3, "*       *");
 		toDraw.put(4, "* * * * *");
 
 		return toDraw;
 	}
+	
 	
 }

@@ -1,1 +1,28 @@
-.class
+	public void initAllPions() {
+		Token pionRouge = new Token("RED");
+		Cell cellRouge1 = this.plateau.getCellAtCoordinates(1, 0);
+		Cell cellRouge2 = this.plateau.getCellAtCoordinates(2, 0);
+		pionRouge.cell1 = cellRouge1;
+		pionRouge.cell2 = cellRouge2;
+		playerR.pion = pionRouge;
+		cellRouge1.pion = pionRouge;
+		cellRouge2.pion = pionRouge;
+
+		Token pionBleu = new Token("BLUE");
+		Cell cellBleu1 = this.plateau.getCellAtCoordinates(1, 1);
+		Cell cellBleu2 = this.plateau.getCellAtCoordinates(2, 1);
+		pionBleu.cell1 = cellBleu1;
+		pionBleu.cell2 = cellBleu2;
+		playerB.pion = pionBleu;
+		cellBleu1.pion = pionBleu;
+		cellBleu2.pion = pionBleu;
+
+		this.pionBlanc = new Token("WHITE");
+		Cell cellBlanc1 = this.plateau.getCellAtCoordinates(1, 2);
+		Cell cellBlanc2 = this.plateau.getCellAtCoordinates(2, 2);
+		this.pionBlanc.cell1 = cellBlanc1;
+		this.pionBlanc.cell2 = cellBlanc2;
+		cellBlanc1.pion = pionBlanc;
+		cellBlanc2.pion = pionBlanc;
+
+	}	

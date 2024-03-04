@@ -49,7 +49,7 @@ public class Player {
 		this.score += pion.compterPoint();
 	}
 
-	private boolean checkIfMoveIsValid(Token pion, Position position, Plateau plateau) {
+	public boolean checkIfMoveIsValid(Token pion, Position position, Plateau plateau) {
 		/*
 		 * Il y a deux conditions, il faut verifier si le pion a réellement une position
 		 * différente, ainsi que le fait qu'il n'y ai pas d'autres pièces a l'endroit où

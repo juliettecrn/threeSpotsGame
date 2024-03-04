@@ -12,6 +12,7 @@ public class Plateau {
 	static int NB_ROW = 3;
 
 
+
 	//constructor
 	public Plateau() {
 		this.cellList = new ArrayList<Cell>();
@@ -20,7 +21,6 @@ public class Plateau {
 
 	//class method
 	public void initialisationAllCells() {
-		int point = 0;
 		for (int x = 0; x < NB_COL; x++) {
 			for (int y = 0; y < NB_ROW; y++) {
 				initOneCell(x, y);

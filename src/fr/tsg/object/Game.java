@@ -1,5 +1,6 @@
 package fr.tsg.object;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,9 +13,12 @@ public class Game {
 	public int turn = 0;
 	public Player playerR;
 	public Player playerB;
-	public Plateau plateau;
+	public static Plateau plateau;
 	public Token pionBlanc;
 	public Player winner;
+	public static int lastChoice = 0;// numero du coup
+	public static Map < Integer, Token> choises = new HashMap<Integer, Token>();// a ce coup voila a quoi devrait ressembler le pion
+	
 
 	// Constructor
 	public Game() {
@@ -101,7 +105,7 @@ public class Game {
 		System.out.println("Winner is player " + this.winner.pion.couleur);
 
 	}
-
+					
 	public void initAllPions() {
 		Token pionRouge = new Token("RED");
 		Cell cellRouge1 = this.plateau.getCellAtCoordinates(1, 0);
@@ -129,7 +133,7 @@ public class Game {
 		cellBlanc1.pion = pionBlanc;
 		cellBlanc2.pion = pionBlanc;
 
-	}
+	}	
 
 	public void initGame() {
 		this.playerR = new Player(0);
