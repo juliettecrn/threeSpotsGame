@@ -26,3 +26,53 @@
 		cellBlanc2.pion = pionBlanc;
 
 	}	
+	
+	
+	public void initAllPions(String couleur, Player player, int x, int y) {
+		if (player != null) {
+			Token pionCouleur = player.pion;
+			pionCouleur = new Token(pionCouleur.couleur);
+			Cell cellCouleur1;
+			Cell cellCouleur2;
+			if ( pionCouleur.couleur == "RED") {
+				cellCouleur1 = this.plateau.getCellAtCoordinates(1, 0);
+				cellCouleur2 = this.plateau.getCellAtCoordinates(2, 0);
+
+			}else {
+				cellCouleur1 = this.plateau.getCellAtCoordinates(1, 1);
+				cellCouleur2 = this.plateau.getCellAtCoordinates(2, 1);
+			}
+			
+			pionCouleur.cell1 = cellCouleur1;
+			pionCouleur.cell2 = cellCouleur2;
+			player.pion = pionCouleur;
+			cellCouleur1.pion = pionCouleur;
+			cellCouleur2.pion = pionCouleur;
+
+		}else {
+			this.pionBlanc = new Token("WHITE");
+			Cell cellBlanc1 = this.plateau.getCellAtCoordinates(1, 2);
+			Cell cellBlanc2 = this.plateau.getCellAtCoordinates(2, 2);
+			this.pionBlanc.cell1 = cellBlanc1;
+			this.pionBlanc.cell2 = cellBlanc2;
+			cellBlanc1.pion = pionBlanc;
+			cellBlanc2.pion = pionBlanc;
+			
+		}
+}
+
+
+Dans doPlayerTurn:
+1- afficher le tableau avec les choix pour le pion du joueur
+2- recuperer le choix du joueur
+3- affiche (le premier tableau et) le resultat
+4- on affiche le tableau avec les choix pour le piosnt blanc
+5- récuperer le choix du joueur
+6- afficher le premier tableau et le resultat
+
+
+AfficherWithChoiceCell:
+il faut faire la même chose mais pour les pions vertical pour le if
+pour savoir si on affiche une ou deux possibilités
+Iµl faut tester pour un pion vertical et un pion horizontal si le déplacement sur la cell courante(this) est valide
+on ajoute les pions temporaires a la map static choices, sans oublier d'incrémenter choices à chaque fois qu'un choix valide est detecté

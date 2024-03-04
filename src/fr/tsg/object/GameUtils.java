@@ -40,7 +40,7 @@ public class GameUtils {
 		if (valid) {
 			Cell cell1 = plateau.getCellAtCoordinates(position);
 			Cell cell2 = plateau.getCellAtCoordinates(position2);
-			if (cell1.pion != null && cell1.pion != pion) {
+			if (cell1.pion != null && !cell1.pion.equals(pion)) {
 				valid = false;
 			} else if (cell2.pion != null && cell2.pion != pion) {
 				valid = false;

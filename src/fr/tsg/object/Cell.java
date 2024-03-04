@@ -85,12 +85,12 @@ public class Cell {
 		} else {
 			toDraw.put(2, "*       *");
 		}
-		Token newPion = new Token("temp");
+		Token newPion = new Token(pion.couleur);
 		newPion.vertical = false;
 		newPion.cell1= this;
 		//newPion.cell2= this;// mais la dcp c'est la meme cellule??
 
-		if(GameUtils.checkIfMoveIsValid(pion, position, plateau)){// j'ai mis un plateau en static  
+		if(GameUtils.checkIfMoveIsValid(newPion, position, plateau)){// j'ai mis un plateau en static  
 			String choice= String.valueOf(Game.lastChoice);
 			Game.choises.put(Game.lastChoice, newPion);
 			Game.lastChoice++;
