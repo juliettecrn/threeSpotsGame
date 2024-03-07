@@ -87,8 +87,11 @@ public class Cell {
 		}
 		Token newPion = new Token(pion.couleur);
 		newPion.vertical = false;
-		newPion.cell1= this;
-		//newPion.cell2= this;// mais la dcp c'est la meme cellule??
+		newPion.attributSecondPosition(plateau, position);
+		Token newNewPion = new Token(pion.couleur);
+
+		Token newNewPion.vertical = true;
+
 
 		if(GameUtils.checkIfMoveIsValid(newPion, position, plateau)){// j'ai mis un plateau en static  
 			String choice= String.valueOf(Game.lastChoice);

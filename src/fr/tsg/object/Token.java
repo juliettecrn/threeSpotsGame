@@ -59,6 +59,14 @@ public class Token {
 		return position2;
 	}
 
+	public void attributSecondPosition(Plateau plateau, Position position){
+		Position position2 = getSecondPosition(position);
+		Cell cell1 = plateau.getCellAtCoordinates(position);
+		Cell cell2 = plateau.getCellAtCoordinates(position2);
+		this.cell1 = cell1;
+		this.cell2 = cell2;
+	}
+
 	public void applyChoice(int choice) {
 
 		Token choix = Game.choises.get(choice);

@@ -76,3 +76,7 @@ il faut faire la même chose mais pour les pions vertical pour le if
 pour savoir si on affiche une ou deux possibilités
 Iµl faut tester pour un pion vertical et un pion horizontal si le déplacement sur la cell courante(this) est valide
 on ajoute les pions temporaires a la map static choices, sans oublier d'incrémenter choices à chaque fois qu'un choix valide est detecté
+
+f6 --> aller a l'instruction suivante
+f8 --> aller au prochain point d'arret
+f5 --> rentrer dans la fonction

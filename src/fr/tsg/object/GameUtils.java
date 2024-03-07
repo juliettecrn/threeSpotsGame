@@ -5,7 +5,7 @@ public class GameUtils {
 	 * On verifie si le pion passé en paramètre peut se mettre a la position donné en paramètre
 	 * @param pion
 	 * @param position
-	 * @param plateau
+	 * @param plateau@
 	 * @return
 	 */
 	public static boolean checkIfMoveIsValid(Token pion, Position position, Plateau plateau) {
