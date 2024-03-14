@@ -35,20 +35,20 @@ public class Plateau {
  * @return
  */
 	public Map<Integer, String> afficherPlateau(boolean choices, Token pion) {
-		Map<Integer, String> finalDraw = new HashMap<Integer, String>();
+		Map<Integer, String> plateauDraw = new HashMap<Integer, String>();
 		for(Cell cell : this.cellList) {
-			Map<Integer, String> cellDrawing = cell.afficherCell(choices, this, pion);
+			Map<Integer, String> cellDraw = cell.afficherCell(choices, this, pion);
 			int start = 4 * cell.position.y;
-			Set<Integer> keys = cellDrawing.keySet();
+			Set<Integer> keys = cellDraw.keySet();
 			for(Integer lineNumber : keys) {
-				String lineDraw = cellDrawing.get(lineNumber);
+				String cellLineDraw = cellDraw.get(lineNumber);
 				int finalLineNumber = start+lineNumber;
-				String draw = finalDraw.getOrDefault(finalLineNumber, "");
-				draw += lineDraw;
-				finalDraw.put(finalLineNumber, draw);
+				String finalLineDraw = plateauDraw.getOrDefault(finalLineNumber, "");
+				finalLineDraw += cellLineDraw;
+				plateauDraw.put(finalLineNumber, finalLineDraw);
 			}
 		}
-		return finalDraw;
+		return plateauDraw;
 	}
 	/**
 	 * se fusionne avec afficherPlateau

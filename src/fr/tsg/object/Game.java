@@ -16,8 +16,8 @@ public class Game {
 	public Plateau plateau;
 	public Token pionBlanc;
 	public Player winner;
-	public static int lastChoice = 0;// numero du coup
-	public static Map < Integer, Token> choises = new HashMap<Integer, Token>();// a ce coup voila a quoi devrait ressembler le pion
+	public static int lastChoice =1;// numero du coup
+	public static Map < Integer, Token> choises = new HashMap<>();// a ce coup voila a quoi devrait ressembler le pion
 	
 
 	// Constructor
@@ -71,7 +71,7 @@ public class Game {
 			System.out.println(lineDraw);
 		}
 	}
-	private boolean checkVictoryConditions() {
+	static boolean checkVictoryConditions() {
 		/*
 		 * Verifier si un joueur a 12 points ou plus, si oui verifier le nombre de point
 		 * de l'adversaire, s'il a 6 ou moins, c'est celui ci qui gagne, s'il a plus,

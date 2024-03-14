@@ -1,5 +1,6 @@
 package fr.tsg.object;
 
+import java.util.Map;
 import java.util.Random;
 
 public class Player {
@@ -12,10 +13,30 @@ public class Player {
 
 	}
 
+	/**
+	 * tu joues pas mais tu lances la fonction qui permet de jouer avec des paramètres différents en fonction
+	 * de si t'es un joueur ou non.
+	 * @param pionBlanc
+	 * @param plateau
+	 */
 	public void play(Token pionBlanc, Plateau plateau) {
 		playPion(this.pion, plateau, true);
+		if(!Game.checkVictoryConditions()) {
+			Map<Integer, String> oldMap = plateau.afficherPlateau(true, player.pion);
+			player.play(pionBlanc, this.plateau);
+			Map<Integer, String> newMap = plateau.mergeOldMap(oldMap);
+			printScreen(newMap);
+		};
 		playPion(pionBlanc, plateau, false);
 	}
+
+	/**
+	 * La tu joues vraiment, fin tu lances une fonction qui choisi une destination et tu lances une fonction qui déplaces
+	 * le joueur.
+	 * @param pion
+	 * @param plateau
+	 * @param scoring
+	 */
 	public void playPion(Token pion, Plateau plateau, boolean scoring) {
 		Position destination = chooseDestination(pion, plateau);
 		movePion(pion, destination, plateau, scoring);
